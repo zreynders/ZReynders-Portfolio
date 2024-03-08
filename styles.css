@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 4vw;
+}
+
+.content {
+    color: #DDDDDD;
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 100% of the viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1; /* Ensure content is above background */
+    flex-direction: column; /* Added to align content vertically */
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Ensure canvas is behind content */
+}
+
+.scroll-link {
+    position: relative;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    text-decoration: none;
+    z-index: 1; /* Ensure link is above canvas */
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card {
+    height: 100px;
+    flex-basis: 20%; /* Ensure card takes 20% width */
+    min-width: 100px;
+    background-color: rgba(221, 221, 221, 0.6); /* Light gray with some transparency */
+    color: #303030;
+    margin: 10px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    order: 1; /* Set default order */
+    border-radius: 10px; /* Add rounded corners */
+}
+
+.card.expanded {
+    height: 400px;
+    flex-basis: 80%; /* Ensure expanded card takes 80% width */
+    background-color: rgba(221, 221, 221, 0.8); /* Light gray with some transparency */
+    z-index: 1;
+    position: relative;
+    order: -1; /* Set order to move expanded card to the top */
+    border-radius: 60px; /* Add rounded corners */
+}
+
+.card-text {
+    display: none; /* Hide by default */
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.card.expanded .card-text {
+    display: block; /* Show when parent card is expanded */
+}
+
+.linkbar {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.link {
+    height: 24px;
+    width: 100px;
+    background-color: rgba(255, 255, 255, 1);
+    margin:5px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    cursor: pointer;
+    border-radius: 20px; /* Add rounded corners */
+}
+
+.profilepic {
+    width: 15vw;
+    height: 15vw;
+    background-color: red;
+    border-radius: 50%; /* Add rounded corners */
+}
