@@ -1,5 +1,11 @@
 function calcDistance(point1, point2) {
-    return Math.sqrt(Math.abs(point1.x - point2.x)**2 + Math.abs(point1.y - point2.y)**2);
+    var c_squared = 0.0;
+
+    for (let key in point1) {
+        c_squared += Math.round((Math.round(point2[key]) - Math.round(point1[key]))**2);
+    };
+
+    return Math.round(Math.sqrt(c_squared));
 }
 
 function breadthFirstSearch(node, target, graph, distance=0, frontier=[], path=[], discovered_nodes=[]) {

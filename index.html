@@ -6,84 +6,95 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <script src="resources/code/search_algorithms.js"></script>
         <script src="resources/code/drawing_functions.js"></script>
+        <script src="resources/code/graph_generation.js"></script>
         <title>Zachary Reynders - Portfolio</title>
     </head>
     <body>
         <!-- First Page -->
         <canvas id="background"></canvas>
         <div class="content">
-            <img class="profilepic" src="resources/images/prof_image.png"></img>
-            <h1>ZACHARY <font color="#81b9dc">REYNDERS</font></h1>
-            <div class="linkbar">
-                <div class="link" style="color: #0077B5;" onclick="window.open('https:\/\/www.linkedin.com/in/zachary-reynders-572842166/', '_blank').focus()">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false" style="margin-right:4px;">
-                        <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
-                    </svg>
-                    LinkedIn
-                </div>
-                
-                <div class="link" style="color: #000000;" onclick="sendEmail()">
-                    <img src="resources\images\email-svgrepo-com.svg" width="24" height="24" style="margin-right:6px;"/>
-                    Email
+            <div class="inner-content">
+                <img class="profilepic" style="margin-top: 15px;" src="resources/images/prof_image.png"></img>
+                <h1>ZACHARY <font color="#3a92c8">REYNDERS</font></h1>
+                <div class="linkbar">
+                    <div class="link" style="color: #0077B5;" onclick="window.open('https:\/\/www.linkedin.com/in/zachary-reynders-572842166/', '_blank').focus()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false" style="margin-right:4px;">
+                            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+                        </svg>
+                        LinkedIn
+                    </div>
+                    
+                    <div class="link" style="color: #000000;" onclick="sendEmail()">
+                        <img src="resources\images\email-svgrepo-com.svg" width="24" height="24" style="margin-right:6px;"/>
+                        Email
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Second Page -->
         <div id="second-page" class="content">
-            <h1>Portfolio</h1>
-            <div class="gallery">
-                <div class="card" onclick="expandCard(this)" data-function="breadthFirstSearch">
-                    <h5>Breadth-First Search</h5>
-                    <div class="card-text">
-                        <p>The breadth-first search algorithm expands the shallowest node in the frontier. This means that it will always find a path with the minimum points (not neccessarily the shortest distance though).</p>
+            <div class="inner-content">
+                <h1>Portfolio</h1>
+                <div class="gallery">
+                    <div class="card" onclick="expandCard(this)" data-function="breadthFirstSearch">
+                        <h5>Breadth-First Search</h5>
+                        <div class="card-text">
+                            <p>The breadth-first search algorithm expands the shallowest node in the frontier. This means that it will always find a path with the minimum points (not neccessarily the shortest distance though).</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="depthFirstSearch">
-                    <h5>Depth-First Search</h5>
-                    <div class="card-text">
-                        <p>The depth-first search algorithm expands an entire branch and then backtracks if it did not find the target node. This can be efficient in some trees, but not a graph. This algorithm is not guaranteed to return the shortest distance or minimum points.</p>
+                    <div class="card" onclick="expandCard(this)" data-function="depthFirstSearch">
+                        <h5>Depth-First Search</h5>
+                        <div class="card-text">
+                            <p>The depth-first search algorithm expands an entire branch and then backtracks if it did not find the target node. This can be efficient in some trees, but not a graph. This algorithm is not guaranteed to return the shortest distance or minimum points.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="greedyBestFirstSearch">
-                    <h5>Greedy Best-First Search</h5>
-                    <div class="card-text">
-                        <p>The greedy best-first search algorithm uses a defined heuristic to estimate the distance between the frontier points and the goal and chooses the best one. It does not consider distance travelled and so may not find the shortest path. (the heuristic being used here is euclidean distance between the point and the target)</p>
+                    <div class="card" onclick="expandCard(this)" data-function="greedyBestFirstSearch">
+                        <h5>Greedy Best-First Search</h5>
+                        <div class="card-text">
+                            <p>The greedy best-first search algorithm uses a defined heuristic to estimate the distance between the frontier points and the goal and chooses the best one. It does not consider distance travelled and so may not find the shortest path. (the heuristic being used here is euclidean distance between the point and the target)</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="algorithmA">
-                    <h5>Algorithm A</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="minimaxAlgorithm">
-                    <h5>Minimax Algorithm</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="abSearch">
-                    <h5>α-β Search</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="naiveBayes">
-                    <h5>Naïve Bayes</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="kNN">
-                    <h5>K-Nearest Neighbour</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="linearRegression">
-                    <h5>Linear Regression</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="kMeanAlgorithm">
-                    <h5>K-Mean Algorithm</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="artificialNeuralNetwork">
-                    <h5>Artificial Neural Network</h5>
-                </div>
-                <div class="card" onclick="expandCard(this)" data-function="deepANN">
-                    <h5>Deep ANN</h5>
+                    <div class="card" onclick="expandCard(this)" data-function="algorithmA">
+                        <h5>Algorithm A</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="minimaxAlgorithm">
+                        <h5>Minimax Algorithm</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="abSearch">
+                        <h5>α-β Search</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="naiveBayes">
+                        <h5>Naïve Bayes</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="kNN">
+                        <h5>K-Nearest Neighbour</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="linearRegression">
+                        <h5>Linear Regression</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="kMeanAlgorithm">
+                        <h5>K-Mean Algorithm</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="artificialNeuralNetwork">
+                        <h5>Artificial Neural Network</h5>
+                    </div>
+                    <div class="card" onclick="expandCard(this)" data-function="deepANN">
+                        <h5>Deep ANN</h5>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- First Page -->
+        <!-- Third  Page -->
         <div id="third-page" class="content">
-            <h1>WORK HISTORY</h1>
+            <div class="inner-content">
+                <h1>WORK HISTORY</h1>
+            </div>
+        </div>
+
+        <!-- Fourth Page -->
+        <div id="fourth-page" class="content">
         </div>
     </body>
     <script>
@@ -92,11 +103,15 @@
 
         var reporting_stats = false
 
+        // Current Algorithm
         var current_function = "";
 
-        var all_points = [];
-        var best_paths = [];
+        // Graph data
+        var points = [];
+        var targets = [];
+        var connections = [];
 
+        // For use by search algorithms
         var point_a;
         var point_b;
 
@@ -107,167 +122,86 @@
 
             if(document.readyState == 'complete') {
                 // Generate random points
-                for (var i = 0; i < 100; i++) {
-                    var x = Math.round(Math.random() * canvas.width,2);
-                    var y = Math.round(Math.random() * canvas.height,2);
+                points = generatePoints(2,3,[canvas.width, canvas.height, 100]);
 
-                    all_points.push({
-                        x:x,
-                        y:y,
-                        tx:x,
-                        ty:y
-                    });
-                };
-
-                point_a = Math.round(Math.random() * all_points.length);
-                point_b = Math.round(Math.random() * (all_points.length-1));
+                point_a = Math.round(Math.random() * points.length);
+                point_b = Math.round(Math.random() * (points.length-1));
                 if (point_b >= point_a) {
                     point_b++;
                 };
 
-                movePoints();
-                setInterval(movePoints, 100);
+                // points.points.forEach(point => {
+                //     drawPoint(point[1], point[2],"", point[3], {r:0,g:0,b:0,a:0}, {r:255,g:255,b:255,a:point[3]*0.1});
+                // });
+                // points = movePoints(points.points, points.targets, 1, [canvas.width, canvas.height, 10]);
+                // points.points.forEach(point => {
+                //     drawPoint(point[1], point[2],"", point[3], {r:0,g:0,b:0,a:0}, {r:255,g:0,b:0,a:point[3]*0.1});
+                // });
+
+                update()
+                //setInterval(update, 1000000);
             }
         };
 
-        function movePoints() {
+        function update() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            all_points.forEach(point => {
-                // Set a new target if the point is at its target
-                if (Math.round(point.x) === Math.round(point.tx) && Math.round(point.y) === Math.round(point.ty)) {
-                    point.tx = Math.round(Math.random() * canvas.width,2);
-                    point.ty = Math.round(Math.random() * canvas.height,2);
-                };
 
-                // Move toward the target position
-                if (point.tx > point.x) {
-                    point.x += 0.2;
-                } else if (point.tx < point.x) {
-                    point.x -= 0.2;
-                };
+            // Move the points a little and get the shortest paths between them
+            points = movePoints(points.points, points.targets, 0.2, [canvas.width, canvas.height, 100]);
+            connections = nearestPoints(points.points);
 
-                if (point.ty > point.y) {
-                    point.y += 0.2;
-                } else if (point.ty < point.y) {
-                    point.y -= 0.2;
-                };
-
-                // Draw the current point
-                ctx.beginPath();
-                ctx.font = "26px sans-serif";
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-                ctx.fillStyle = 'rgba(0, 0, 255, 0.6)';
-                ctx.arc(point.x,point.y,5,0,2 * Math.PI);
-                
-                if (current_function != ""){ 
-                    if (point == all_points[point_a]) {
-                        ctx.fillText("A", point.x-30, point.y+5);
-                    } else if (point == all_points[point_b]) {
-                        ctx.fillText("B", point.x-30, point.y+5);
-                    }
-                } else {
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-                };
-
-                ctx.stroke();
+            // // Do a search if one is selected
+            // var result;
+            // switch (current_function) {
+            //     case "breadthFirstSearch":
+            //         result = breadthFirstSearch(point_a, point_b, best_paths); 
+            //         break;
+            //     case "depthFirstSearch":
+            //         result = depthFirstSearch(point_a, point_b, best_paths); 
+            //         break;
+            //     case "greedyBestFirstSearch":
+            //         result = greedyBestFirstSearch(point_a, point_b, best_paths, points); 
+            //         break;
+            //     case "algorithmA":
+            //         result = algorithmA(point_a, point_b, best_paths); 
+            //         break;
+            //     case "minimaxAlgorithm":
+            //         result = minimaxAlgorithm(point_a, point_b, best_paths); 
+            //         break;
+            //     case "abSearch":
+            //         result = abSearch(point_a, point_b, best_paths); 
+            //         break;
+            //     case "naiveBayes":
+            //         result = naiveBayes(point_a, point_b, best_paths); 
+            //         break;
+            //     case "kNN":
+            //         result = kNN(point_a, point_b, best_paths); 
+            //         break;
+            //     case "linearRegression":
+            //         result = linearRegression(point_a, point_b, best_paths); 
+            //         break;
+            //     case "kMeanAlgorithm":
+            //         result = kMeanAlgorithm(point_a, point_b, best_paths); 
+            //         break;
+            //     case "artificialNeuralNetwork":
+            //         result = artificialNeuralNetwork(point_a, point_b, best_paths); 
+            //         break;
+            //     case "deepANN":
+            //         result = deepANN(point_a, point_b, best_paths); 
+            //         break;
+            //     default:
+            //         break;
+            // }
+            
+            drawPaths(points.points, connections, 1, 2, 3, 3, style={r:255, g:255, b:255, a:0.01});
+            
+            points.points.forEach(point => {
+                drawPoint(point[1], point[2],"", point[3]*0.1, {r:0,g:0,b:0,a:0}, {r:255,g:255,b:255,a:point[3]*0.1});
             });
 
-            // Get the shortest paths
-            best_paths = nearestPoints();
-            drawPaths(best_paths);
-
-            // Do a search if one is selected
-            var path;
-            var result;
-            
-            switch (current_function) {
-                case "breadthFirstSearch":
-                    result = breadthFirstSearch(point_a, point_b, best_paths); 
-                    break;
-                case "depthFirstSearch":
-                    result = depthFirstSearch(point_a, point_b, best_paths); 
-                    break;
-                case "greedyBestFirstSearch":
-                    result = greedyBestFirstSearch(point_a, point_b, best_paths, all_points); 
-                    break;
-                case "algorithmA":
-                    result = algorithmA(point_a, point_b, best_paths); 
-                    break;
-                case "minimaxAlgorithm":
-                    result = minimaxAlgorithm(point_a, point_b, best_paths); 
-                    break;
-                case "abSearch":
-                    result = abSearch(point_a, point_b, best_paths); 
-                    break;
-                case "naiveBayes":
-                    result = naiveBayes(point_a, point_b, best_paths); 
-                    break;
-                case "kNN":
-                    result = kNN(point_a, point_b, best_paths); 
-                    break;
-                case "linearRegression":
-                    result = linearRegression(point_a, point_b, best_paths); 
-                    break;
-                case "kMeanAlgorithm":
-                    result = kMeanAlgorithm(point_a, point_b, best_paths); 
-                    break;
-                case "artificialNeuralNetwork":
-                    result = artificialNeuralNetwork(point_a, point_b, best_paths); 
-                    break;
-                case "deepANN":
-                    result = deepANN(point_a, point_b, best_paths); 
-                    break;
-                default:
-                    break;
-            }
-            
-            if (result != null) {
-                drawPath(result.final_path);
-            }
-
-            if (reporting_stats) {
-                if (result != null) {
-                    drawStats([
-                        {key: "Points Travelled: ", value: result.final_path.length.toString()},
-                        {key: "Distance Travelled: ", value: result.final_distance.toString()},
-                    ])
-                } else {
-                    drawStats([
-                        {key: "Points Travelled: ", value: "N/A"},
-                        {key: "Distance Travelled: ", value: "N/A"}
-                    ])
-                }
-            }
-
-            if (path != null) {
-                drawPath(path);
-            }
-        };
-
-        function nearestPoints(closest_points=3) {
-            var paths = [];
-            for (let i = 0; i < all_points.length; i++) {
-                var distances = []
-                for (let j = 0; j < all_points.length; j++) {
-                    if (j == i){
-                        continue;
-                    }
-
-                    distances.push({point1: i, point2: j, distance: calcDistance(all_points[i], all_points[j])});
-                };
-
-                distances.sort((a, b) => a.distance - b.distance);
-
-                var best_paths = distances.slice(0, closest_points);
-
-                best_paths.forEach(path => {
-                    if (paths.filter(e => e.point1 === path.point2 && e.point2 === path.point1).length === 0) {
-                        paths.push(path);
-                    }
-                });
-            };
-
-            return paths;
+            // if (result != null) {
+            //     drawPath(result.final_path, 'rgba(40, 0, 255, 1)');
+            // }
         };
 
         function expandCard(card) {
