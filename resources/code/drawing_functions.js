@@ -10,56 +10,56 @@ function drawStats(stats) {
     }
 }
 
-function drawPath(path, style='rgba(255, 255, 255, 1)') {
+function drawPath(path, points, x_dimension=1, y_dimension=2, size_dimension=-1, opacity_dimension=-1, style={r:255, g:255, b:255, a:1}) {
     ctx.beginPath();
-    var start = all_points[path[0]];
+    var start = points[path[0]];
 
-    ctx.moveTo(start.x, start.y);
+    ctx.moveTo(start[x_dimension], start[y_dimension]);
     
-    drawPoint(start.x, start.y, "A", style, style);
+    
+    if (size_dimension != -1) {
+        drawPoint(start[x_dimension], start[y_dimension], "A", start[size_dimension]*0.1, style, style)
+    } else {
+        drawPoint(start[x_dimension], start[y_dimension], "A", 5, style, style)
+    }
 
     for (let index = 1; index < path.length; index++) {
-        var next_point = all_points[path[index]];
+        var next_point = points[path[index]];
         ctx.strokeStyle = style;
-        ctx.lineTo(next_point.x, next_point.y);
+        ctx.lineTo(next_point[x_dimension], next_point[y_dimension]);
         ctx.stroke();
 
         if (index+1 === path.length) {
-            drawPoint(next_point.x, next_point.y, "B", style, style);
+            if (size_dimension != -1) {
+                drawPoint(next_point[x_dimension], next_point[y_dimension], "B", next_point[size_dimension]*0.1, style, style)
+            } else {
+                drawPoint(next_point[x_dimension], next_point[y_dimension], "B", 5, style, style)
+            }
         } else {
-            drawPoint(next_point.x, next_point.y, "", style, style);
+            if (size_dimension != -1) {
+                drawPoint(next_point[x_dimension], next_point[y_dimension], "", next_point[size_dimension]*0.1, style, style)
+            } else {
+                drawPoint(next_point[x_dimension], next_point[y_dimension], "", 5, style, style)
+            }
         }
     };
 };
 
-function drawPaths(points, paths, x_dimension=1, y_dimension=2, size_dimension=1, opacity_dimension=1, style={r:255, g:255, b:255, a:1}) {
+function drawPaths(points, paths, x_dimension=1, y_dimension=2, size_dimension=-1, opacity_dimension=-1, style={r:255, g:255, b:255, a:1}) {
     paths.forEach(path => {
-        console.log("PATH: ")
-        var vector_n = {};
-        for (let d in points[path.point1]) {
-            vector_n[d] = points[path.point2][d] - points[path.point1][d];
+        var gradient = ctx.createLinearGradient(points[path.point1][x_dimension], points[path.point1][y_dimension], points[path.point2][x_dimension], points[path.point2][y_dimension]);
+
+        if (opacity_dimension != -1) {
+            gradient.addColorStop(0, `rgba(${style.r}, ${style.g}, ${style.b}, ${style.a*points[path.point1][opacity_dimension]})`);
+            gradient.addColorStop(1, `rgba(${style.r}, ${style.g}, ${style.b}, ${style.a*points[path.point2][opacity_dimension]})`);
+        } else {
+            gradient.addColorStop(0, `rgba(${style.r}, ${style.g}, ${style.b}, ${style.a})`);
+            gradient.addColorStop(1, `rgba(${style.r}, ${style.g}, ${style.b}, ${style.a})`);
         }
-
-        console.log(vector_n)
-
-        var gradient = ctx.createLinearGradient(0, 0, 0, 170);
-        gradient.addColorStop(0, `rgba(${style.r}, ${style.g}, ${style.b}, ${style.a*points[path.point2][opacity_dimension]})`);
-        gradient.addColorStop(1, `rgba(${style.r}, ${style.g}, ${style.b}, ${style.a*points[path.point1][opacity_dimension]})`);
-
-        // Facing point 2 move left of centre 1/4 of point 1s radius
-        var test_x = points[path.point1][x_dimension]+(vector_n[x_dimension]*2);
-        var test_y = points[path.point1][y_dimension]+(vector_n[y_dimension]*2);
-        drawPoint(test_x, test_y, "", 10, {r:255, g:0, b:0, a:1}, {r:255, g:0, b:0, a:1});
-        
-        // Facing point 2 move right of centre 1/4 of point 1s radius
-
-        // Facing point 1 move left of centre 1/4 of point 2s radius
-
-        // Facing point 1 move right of centre 1/4 of point 2s radius
 
         ctx.beginPath();
         
-        ctx.strokeStyle = `rgba(${style.r}, ${style.g}, ${style.b}, ${1})`;
+        ctx.strokeStyle = gradient;
         ctx.fillStyle = gradient;
 
         ctx.moveTo(points[path.point1][x_dimension], points[path.point1][y_dimension]);

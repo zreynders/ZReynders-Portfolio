@@ -122,24 +122,15 @@
 
             if(document.readyState == 'complete') {
                 // Generate random points
-                points = generatePoints(2,3,[canvas.width, canvas.height, 100]);
+                points = generatePoints(100,3,[canvas.width, canvas.height, 100]);
 
-                point_a = Math.round(Math.random() * points.length);
-                point_b = Math.round(Math.random() * (points.length-1));
+                point_a = Math.round(Math.random() * points.points.length);
+                point_b = Math.round(Math.random() * (points.points.length-1));
                 if (point_b >= point_a) {
                     point_b++;
                 };
 
-                // points.points.forEach(point => {
-                //     drawPoint(point[1], point[2],"", point[3], {r:0,g:0,b:0,a:0}, {r:255,g:255,b:255,a:point[3]*0.1});
-                // });
-                // points = movePoints(points.points, points.targets, 1, [canvas.width, canvas.height, 10]);
-                // points.points.forEach(point => {
-                //     drawPoint(point[1], point[2],"", point[3], {r:0,g:0,b:0,a:0}, {r:255,g:0,b:0,a:point[3]*0.1});
-                // });
-
-                update()
-                //setInterval(update, 1000000);
+                setInterval(update, 100);
             }
         };
 
@@ -150,58 +141,66 @@
             points = movePoints(points.points, points.targets, 0.2, [canvas.width, canvas.height, 100]);
             connections = nearestPoints(points.points);
 
-            // // Do a search if one is selected
-            // var result;
-            // switch (current_function) {
-            //     case "breadthFirstSearch":
-            //         result = breadthFirstSearch(point_a, point_b, best_paths); 
-            //         break;
-            //     case "depthFirstSearch":
-            //         result = depthFirstSearch(point_a, point_b, best_paths); 
-            //         break;
-            //     case "greedyBestFirstSearch":
-            //         result = greedyBestFirstSearch(point_a, point_b, best_paths, points); 
-            //         break;
-            //     case "algorithmA":
-            //         result = algorithmA(point_a, point_b, best_paths); 
-            //         break;
-            //     case "minimaxAlgorithm":
-            //         result = minimaxAlgorithm(point_a, point_b, best_paths); 
-            //         break;
-            //     case "abSearch":
-            //         result = abSearch(point_a, point_b, best_paths); 
-            //         break;
-            //     case "naiveBayes":
-            //         result = naiveBayes(point_a, point_b, best_paths); 
-            //         break;
-            //     case "kNN":
-            //         result = kNN(point_a, point_b, best_paths); 
-            //         break;
-            //     case "linearRegression":
-            //         result = linearRegression(point_a, point_b, best_paths); 
-            //         break;
-            //     case "kMeanAlgorithm":
-            //         result = kMeanAlgorithm(point_a, point_b, best_paths); 
-            //         break;
-            //     case "artificialNeuralNetwork":
-            //         result = artificialNeuralNetwork(point_a, point_b, best_paths); 
-            //         break;
-            //     case "deepANN":
-            //         result = deepANN(point_a, point_b, best_paths); 
-            //         break;
-            //     default:
-            //         break;
-            // }
+            // Do a search if one is selected
+            var result;
+            switch (current_function) {
+                case "breadthFirstSearch":
+                    result = breadthFirstSearch(point_a, point_b, connections); 
+                    break;
+                case "depthFirstSearch":
+                    result = depthFirstSearch(point_a, point_b, connections); 
+                    break;
+                case "greedyBestFirstSearch":
+                    result = greedyBestFirstSearch(point_a, point_b, connections, points); 
+                    break;
+                case "algorithmA":
+                    result = algorithmA(point_a, point_b, connections); 
+                    break;
+                case "minimaxAlgorithm":
+                    result = minimaxAlgorithm(point_a, point_b, connections); 
+                    break;
+                case "abSearch":
+                    result = abSearch(point_a, point_b, connections); 
+                    break;
+                case "naiveBayes":
+                    result = naiveBayes(point_a, point_b, connections); 
+                    break;
+                case "kNN":
+                    result = kNN(point_a, point_b, connections); 
+                    break;
+                case "linearRegression":
+                    result = linearRegression(point_a, point_b, connections); 
+                    break;
+                case "kMeanAlgorithm":
+                    result = kMeanAlgorithm(point_a, point_b, connections); 
+                    break;
+                case "artificialNeuralNetwork":
+                    result = artificialNeuralNetwork(point_a, point_b, connections); 
+                    break;
+                case "deepANN":
+                    result = deepANN(point_a, point_b, connections); 
+                    break;
+                default:
+                    break;
+            }
             
-            drawPaths(points.points, connections, 1, 2, 3, 3, style={r:255, g:255, b:255, a:0.01});
+            drawPaths(points.points, connections, 1, 2, 3, 3, style={r:120, g:50, b:230, a:0.01});
             
             points.points.forEach(point => {
-                drawPoint(point[1], point[2],"", point[3]*0.1, {r:0,g:0,b:0,a:0}, {r:255,g:255,b:255,a:point[3]*0.1});
+                drawPoint(point[1], point[2],"", point[3]*0.1, {r:0,g:0,b:0,a:0}, {r:180,g:180,b:230,a:point[3]*0.01});
             });
 
-            // if (result != null) {
-            //     drawPath(result.final_path, 'rgba(40, 0, 255, 1)');
-            // }
+            if (result != null) {
+                drawPath(result.final_path, points.points, 1, 2, 3, 3, {r:70,g:70,b:255,a:1});
+
+                drawStats([{
+                    key: "Distance",
+                    value: result.final_distance
+                }]);
+            } else {
+                drawPoint(points.points[point_a][1], points.points[point_a][2], "A", points.points[point_a][3]*0.1, {r:70,g:70,b:255,a:1}, {r:70,g:70,b:255,a:1})
+                drawPoint(points.points[point_b][1], points.points[point_b][2], "B", points.points[point_b][3]*0.1, {r:70,g:70,b:255,a:1}, {r:70,g:70,b:255,a:1})
+            }
         };
 
         function expandCard(card) {
