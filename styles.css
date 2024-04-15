@@ -69,7 +69,7 @@ canvas {
 
 .card.expanded {
     width: 60vw; /* When expanded, make it smaller */
-    height: 30vh;
+    height: fit-content;
     z-index: 1;
     position: relative;
     order: -1; /* Set order to move expanded card to the top */
