@@ -40,15 +40,6 @@ canvas {
     z-index: 0; /* Ensure canvas is behind content */
 }
 
-.scroll-link {
-    position: relative;
-    bottom: 20px;
-    right: 20px;
-    color: white;
-    text-decoration: none;
-    z-index: 1; /* Ensure link is above canvas */
-}
-
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +64,7 @@ canvas {
 }
 
 .card h5 {
-    font-size: larger;
+    font-size: 100%;
 }
 
 .card.expanded {
@@ -89,39 +80,19 @@ canvas {
 }
 
 .card.expanded h5 {
-    font-size: xx-large;
+    font-size: 120%;
+    margin-bottom:0;
 }
 
 .card-text {
     display: none; /* Hide by default */
-    padding-left: 20%;
-    padding-right: 20%;
-    font-size:large;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 100%;
 }
 
 .card.expanded .card-text {
     display: block; /* Show when parent card is expanded */
-}
-
-.linkbar {
-    width: 80vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.link {
-    height: 24px;
-    width: 100px;
-    background-color: rgba(255, 255, 255, 1);
-    margin:5px;
-    padding: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    cursor: pointer;
-    border-radius: 20px; /* Add rounded corners */
 }
 
 .profilepic {
