@@ -13,7 +13,7 @@ h1 {
     color: #444444;
     position: relative;
     width: 100vw;
-    height: 120vh; /* 100% of the viewport height */
+    height: 140vh; /* 100% of the viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
