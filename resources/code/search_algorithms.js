@@ -94,7 +94,7 @@ function depthFirstSearch(node, target, graph, distance=0, frontier=[], path=[],
     return depthFirstSearch(next_node.node, target, graph, next_node.distance, [...frontier], next_node.path, [...discovered_nodes]);
 }
 
-function greedyBestFirstSearch(node, target, graph, points, heuristic="euclidean", distance=0, frontier=[], path=[], discovered_nodes=[]) {
+function greedyBestFirstSearch(node, target, graph, points, heuristic_type="euclidean", distance=0, frontier=[], path=[], discovered_nodes=[]) {
     
     if (discovered_nodes.length === 0) {
         discovered_nodes.push(node);
@@ -117,7 +117,7 @@ function greedyBestFirstSearch(node, target, graph, points, heuristic="euclidean
 
         // Calculate the heuristic
         var h;
-        switch (heuristic) {
+        switch (heuristic_type) {
             case "euclidean":
                 h = calcDistance(points[leaf_node], points[target]);
                 break;
@@ -146,11 +146,67 @@ function greedyBestFirstSearch(node, target, graph, points, heuristic="euclidean
         return null;
     }
 
-    return greedyBestFirstSearch(next_node.node, target, graph, points, heuristic, next_node.distance, [...frontier], next_node.path, [...discovered_nodes]);
+    return greedyBestFirstSearch(next_node.node, target, graph, points, heuristic_type, next_node.distance, [...frontier], next_node.path, [...discovered_nodes]);
 }
 
-function algorithmA(node, target, graph, frontier=[], path=[], discovered_nodes=[]) {
+function algorithmA(node, target, graph, points, heuristic_type="euclidean", distance=0, frontier=[], path=[], discovered_nodes=[]) {
+    if (discovered_nodes.length === 0) {
+        discovered_nodes.push(node);
+    };
 
+    path.push(node);
+
+    if (node === target) {
+        return {final_path:path, final_distance:distance};
+    };
+
+    var node_leaves = graph.filter(e => e.point1 == node || e.point2 == node);
+    for (let leaf = 0; leaf < node_leaves.length; leaf++) {
+        var leaf_node;
+        if (node_leaves[leaf].point1 === node) {
+            leaf_node = node_leaves[leaf].point2;
+        } else {
+            leaf_node = node_leaves[leaf].point1;
+        }
+
+        // Calculate the heuristic
+        var h;
+        switch (heuristic_type) {
+            case "euclidean":
+                h = calcDistance(points[leaf_node], points[target]);
+                break;
+            default:
+                h = 0;
+                break;
+        }
+
+        //Calculate the cost
+        var g = Math.round(distance+node_leaves[leaf].distance);
+
+        // Calculate the function
+        var f = g + h;
+        
+        if (discovered_nodes.indexOf(leaf_node) === -1) {
+            discovered_nodes.push(leaf_node);
+            frontier.push({
+                node: leaf_node, depth: path.length, heuristic: h, distance: g, function: f, path: [...path]
+            });
+        }
+    };
+
+    if (frontier.length === 0) {
+        return null;
+    };
+
+    // Sort by the function output and get the lowest one
+    frontier.sort((a, b) => parseFloat(b.function) - parseFloat(a.function));
+    next_node = frontier.pop()
+    
+    if (next_node.depth > 50) {
+        return null;
+    }
+
+    return algorithmA(next_node.node, target, graph, points, heuristic_type, next_node.distance, [...frontier], next_node.path, [...discovered_nodes]);
 }
 
 function minimaxAlgorithm(node, target, graph, frontier=[], path=[], discovered_nodes=[]) {

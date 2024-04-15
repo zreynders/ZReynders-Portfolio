@@ -13,7 +13,7 @@ h1 {
     color: #444444;
     position: relative;
     width: 100vw;
-    height: 100vh; /* 100% of the viewport height */
+    height: 120vh; /* 100% of the viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,6 +29,7 @@ h1 {
     width: 75vw;
     height: 75vh;
     min-width: 400px;
+    height: fit-content;
 }
 
 canvas {
@@ -55,35 +56,46 @@ canvas {
 }
 
 .card {
-    height: 100px;
-    flex-basis: 20%; /* Ensure card takes 20% width */
-    min-width: 100px;
-    background-color: #666666; /* Light gray with some transparency */
-    color: #DDDDDD;
+    width: 20vw; /* Initially, spread across the container */
+    height: 20vh;
+    background-color: #ddd;
     margin: 10px;
-    display: flex;
     flex-direction: column; /* Stack children vertically */
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    order: 1; /* Set default order */
+    /*transition: all 0.3s ease; /* Transition all properties */
     border-radius: 10px; /* Add rounded corners */
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+}
+
+.card h5 {
+    font-size: larger;
 }
 
 .card.expanded {
-    height: 400px;
-    flex-basis: 80%; /* Ensure expanded card takes 80% width */
+    width: 60vw; /* When expanded, make it smaller */
+    height: 30vh;
     z-index: 1;
     position: relative;
     order: -1; /* Set order to move expanded card to the top */
-    border-radius: 60px; /* Add rounded corners */
+    border-radius: 20px; /* Add rounded corners */
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+}
+
+.card.expanded h5 {
+    font-size: xx-large;
 }
 
 .card-text {
     display: none; /* Hide by default */
     padding-left: 20%;
     padding-right: 20%;
+    font-size:large;
 }
 
 .card.expanded .card-text {
@@ -112,7 +124,31 @@ canvas {
 }
 
 .profilepic {
-    width: 15vw;
-    height: 15vw;
+    width: 35%;
+    height: width;
     border-radius: 50%; /* Add rounded corners */
+    border-style: solid;
+    border-color: #AAA;
+}
+
+.work-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.work-entry {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ddd;
+    border-radius: 8px;
+    width: 70%;
+}
+
+.work-entry h2 {
+    margin-top: 0;
+}
+
+.work-entry p {
+    margin: 5px 0;
 }

@@ -14,9 +14,9 @@
         <canvas id="background"></canvas>
         <div class="content">
             <div class="inner-content">
-                <img class="profilepic" style="margin-top: 15px;" src="resources/images/prof_image.png"></img>
-                <h1>ZACHARY <font color="#3a92c8">REYNDERS</font></h1>
-                <div class="linkbar">
+                <img class="profilepic" style="margin-top: 10vh;" src="resources/images/prof_image.png"></img>
+                <h1 style="margin-top: 10vh; margin-bottom: 10vh;">ZACHARY <font color="#3282b3">REYNDERS</font></h1>
+                <!--<div class="linkbar">#3a92c8
                     <div class="link" style="color: #0077B5;" onclick="window.open('https:\/\/www.linkedin.com/in/zachary-reynders-572842166/', '_blank').focus()">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" class="mercado-match" width="24" height="24" focusable="false" style="margin-right:4px;">
                             <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
@@ -28,15 +28,98 @@
                         <img src="resources\images\email-svgrepo-com.svg" width="24" height="24" style="margin-right:6px;"/>
                         Email
                     </div>
+                </div>-->
+            </div>
+        </div>
+
+        
+
+        <!-- Second  Page -->
+        <div id="second-page" class="content">
+            <div class="inner-content">
+                <h1>EDUCATION</h1>
+                <div class="work-history" style="margin-top: 10vh; margin-bottom: 10vh;">
+                    <div class="work-entry">
+                        <h2>Master of Computer Science - Artificial Intelligence</h2>
+                        <p>Monash University</p>
+                        <p><b>Expected:</b> June 2025</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Graduate Diploma of Computer Science</h2>
+                        <p>Monash University</p>
+                        <p><b>Completed:</b> November 2023</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Advanced Diploma of Interactive Digital Media</h2>
+                        <p>TAFE Queensland</p>
+                        <p><b>Completed:</b> December 2015</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Second Page -->
+        <!-- Second  Page -->
         <div id="second-page" class="content">
             <div class="inner-content">
-                <h1>Portfolio</h1>
-                <div class="gallery">
+
+                <h1>WORK HISTORY</h1>
+                <div class="work-history" style="margin-top: 10vh; margin-bottom: 10vh;">
+                    <div class="work-entry">
+                        <h2>Advanced Analytics and Automation Lead</h2>
+                        <p>Bank of Queensland</p>
+                        <p>Jul 2023 - Present</p>
+                        <p><b>Skills/Languages:</b> Python, AI, Teradata SQL, APIs</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Senior Data Scientist</h2>
+                        <p>Westpac</p>
+                        <p>Aug 2022 - Jul 2023</p>
+                        <p>Blah blah blah</p>
+                        <p><b>Skills/Languages:</b> Python, ML, Teradata SQL, APIs</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Senior Data Scientist</h2>
+                        <p>News Corp Australia</p>
+                        <p>Jun 2021 - Sep 2022</p>
+                        <p>Blah blah blah</p>
+                        <p><b>Skills/Languages:</b> Python, ML, AI, JavaScript, SQL, Google Apps Scripts, APIs</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Senior Data Analyst</h2>
+                        <p>News Corp Australia</p>
+                        <p>Aug 2020 - Jun 2021</p>
+                        <p>Blah blah blah</p>
+                        <p><b>Skills/Languages:</b> Python, JavaScript, SQL, Google Apps Scripts, APIs</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Lead Automation Specialist</h2>
+                        <p>Inchcape Australia</p>
+                        <p>Jan 2020 - Aug 2020</p>
+                        <p>Blah blah blah</p>
+                        <p><b>Skills/Languages:</b> Python, ML, JavaScript, SQL, APIs, VB.Net, UIPath</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Automation Developer</h2>
+                        <p>Inchcape Australia</p>
+                        <p>Feb 2019 - Jan 2020</p>
+                        <p><b>Skills/Languages:</b> Python, ML, JavaScript, SQL, APIs, VB.Net, UIPath</p>
+                    </div>
+                    <div class="work-entry">
+                        <h2>Service Desk Analyst</h2>
+                        <p>Inchcape Australia</p>
+                        <p>Jan 2018 - Feb 2019</p>
+                        <p><b>Skills/Languages:</b> VB.Net, APIs, SQL</p>
+                    </div>
+                    <!-- Add more work entries as needed -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Page -->
+        <div id="third-page" class="content">
+            <div class="inner-content">
+                <h1>Search Algorithms</h1>
+                <div class="gallery" style="margin-top: 10vh; margin-bottom: 10vh;">
                     <div class="card" onclick="expandCard(this)" data-function="breadthFirstSearch">
                         <h5>Breadth-First Search</h5>
                         <div class="card-text">
@@ -46,7 +129,7 @@
                     <div class="card" onclick="expandCard(this)" data-function="depthFirstSearch">
                         <h5>Depth-First Search</h5>
                         <div class="card-text">
-                            <p>The depth-first search algorithm expands an entire branch and then backtracks if it did not find the target node. This can be efficient in some trees, but not a graph. This algorithm is not guaranteed to return the shortest distance or minimum points.</p>
+                            <p>The depth-first search algorithm expands an entire branch and then back-tracks if it did not find the target node. This can be efficient in some trees, but not a graph. This algorithm is not guaranteed to return the shortest distance or minimum points.</p>
                         </div>
                     </div>
                     <div class="card" onclick="expandCard(this)" data-function="greedyBestFirstSearch">
@@ -57,7 +140,11 @@
                     </div>
                     <div class="card" onclick="expandCard(this)" data-function="algorithmA">
                         <h5>Algorithm A</h5>
+                        <div class="card-text">
+                            <p>The Algorithm A algorithm uses a defined heuristic to estimate the distance between the frontier points and the goal along with the distance travelled and chooses the best one. Because it takes into account the distance travelled it will find the shortest path, but can be slower than the Greedy Best-First algorithm. (the heuristic being used here is euclidean distance between the point and the target)</p>
+                        </div>
                     </div>
+                    <!--
                     <div class="card" onclick="expandCard(this)" data-function="minimaxAlgorithm">
                         <h5>Minimax Algorithm</h5>
                     </div>
@@ -82,14 +169,8 @@
                     <div class="card" onclick="expandCard(this)" data-function="deepANN">
                         <h5>Deep ANN</h5>
                     </div>
+                    -->
                 </div>
-            </div>
-        </div>
-
-        <!-- Third  Page -->
-        <div id="third-page" class="content">
-            <div class="inner-content">
-                <h1>WORK HISTORY</h1>
             </div>
         </div>
 
@@ -154,7 +235,7 @@
                     result = greedyBestFirstSearch(point_a, point_b, connections, points); 
                     break;
                 case "algorithmA":
-                    result = algorithmA(point_a, point_b, connections); 
+                    result = algorithmA(point_a, point_b, connections, points); 
                     break;
                 case "minimaxAlgorithm":
                     result = minimaxAlgorithm(point_a, point_b, connections); 
