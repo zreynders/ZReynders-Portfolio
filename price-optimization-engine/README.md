@@ -15,7 +15,7 @@ Why it matters: Works for e-commerce, SaaS, food-tech, travel
 
 Tech stack: Python, scikit-learn, optimisation libraries (scipy.optimize, PuLP)
 
-## Datasets
+## Possible Datasets
 ### 1 - Elasticity
 I was able to obtain a dataset from kaggle that will work to show how this Price Optimisation Engine will work.
 
@@ -90,8 +90,3 @@ pricing_optimizaiton.csv:
 This dataset seems to include everything I need to do my full Price Optimisation Engine.
 
 Source: https://www.kaggle.com/datasets/suvroo/inventory-optimization-for-retail 
-
-## Price Elasticity
-Price elasticity answers the question: "How does demand respond to price changes?"
-
-This is the first question we want to answer on our path to a full dynamic pricing model.
