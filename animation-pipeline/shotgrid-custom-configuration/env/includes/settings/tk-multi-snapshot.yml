@@ -134,3 +134,23 @@ settings.tk-multi-snapshot.motionbuilder.shot_step:
   template_snapshot: mobu_shot_snapshot
   template_work: mobu_shot_work
   location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- Krita
+
+# asset step
+settings.tk-multi-snapshot.krita.asset_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-krita.py"
+  template_snapshot: krita_asset_snapshot
+  template_work: krita_asset_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.krita.shot_step:
+  hook_scene_operation: "{engine}/tk-multi-snapshot/scene_operation_tk-krita.py"
+  template_snapshot: krita_shot_snapshot
+  template_work: krita_shot_work
+  hook_thumbnail: "{engine}/thumbnail.py"
+  location: "@apps.tk-multi-snapshot.location"

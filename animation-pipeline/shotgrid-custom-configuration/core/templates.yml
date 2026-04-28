@@ -163,6 +163,16 @@ keys:
         format_spec: "05"
         alias: SEQ
 
+    # Krita
+    krita.image_extension:
+        type: str
+        alias: extension
+        default: png
+
+    krita.layer_name:
+        type: str
+        alias: name
+
 
 #
 # The paths section contains all the the key locations where files are to be stored
@@ -700,6 +710,105 @@ paths:
     vred_asset_render_sequence_publish:
         definition: '@asset_root/publish/images/{name}/v{version}/{Asset}_{name}_v{version}[-{vred.render_pass}]-{vred.frame}.{vred.render_extension}'
 
+    #
+    # KRITA
+    #
+
+    # asset
+    # define the location of a work area
+    asset_work_area_krita:
+        definition: '@asset_root/work/krita'
+        root_name: 'primary'
+
+    # define the location of a publish area
+    asset_publish_area_krita:
+        definition: '@asset_root/publish/krita'
+        root_name: 'primary'
+
+    # The location of WIP files
+    krita_asset_work:
+        definition: '@asset_work_area_krita/{name}.v{version}.kra'
+        root_name: 'primary'
+
+    # The location of backups of WIP files
+    krita_asset_snapshot:
+        definition: '@asset_work_area_krita/snapshots/{name}.v{version}.{timestamp}.kra'
+        root_name: 'primary'
+
+    # Location of the Krita session once published
+    krita_asset_publish:
+        definition: '@asset_publish_area_krita/{name}.v{version}.kra'
+        root_name: 'primary'
+
+    # These templates are related to publishing layers within Krita
+
+    # where to export the individual layers before publishing them
+    krita_asset_layer_export:
+        definition: '@asset_root/work/krita/layers/{Asset}_krita_layers.v{version}/@krita_layer_name'
+        root_name: 'primary'
+
+    # where to publish the individual layers
+    krita_asset_layer_publish:
+        definition: '@asset_root/publish/krita/layers/{Asset}_krita_layers.v{version}/@krita_layer_name'
+        root_name: 'primary'
+
+    # where to export layers as a folder before publishing
+    krita_asset_layers_export:
+        definition: '@asset_root/work/krita/layers/{Asset}_krita_layers.v{version}'
+        root_name: 'primary'
+
+    # where to publish layers as a folder
+    krita_asset_layers_publish:
+        definition: '@asset_root/publish/krita/layers/{Asset}_krita_layers.v{version}'
+        root_name: 'primary'
+
+    # shot
+    # define the location of a work area
+    shot_work_area_krita:
+        definition: '@shot_root/work/krita'
+        root_name: 'primary'
+
+    # define the location of a publish area
+    shot_publish_area_krita:
+        definition: '@shot_root/publish/krita'
+        root_name: 'primary'
+
+    # The location of WIP files
+    krita_shot_work:
+        definition: '@shot_root/work/krita/{name}.v{version}/{name}.v{version}.kra'
+        root_name: 'primary'
+
+    # The location of backups of WIP files
+    krita_shot_snapshot:
+        definition: '@shot_root/work/krita/snapshots/{name}.v{version}/{name}.v{version}.{timestamp}.kra'
+        root_name: 'primary'
+
+    # The location of published krita session
+    krita_shot_publish:
+        definition: '@shot_root/publish/krita/{name}.v{version}/{name}.v{version}.kra'
+        root_name: 'primary'
+
+    # These templates are related to publishing layers within Krita
+    # where to export the individual layers before publishing them
+    krita_shot_layer_export:
+        definition: '@shot_root/work/krita/layers/{Shot}_krita_layers.v{version}/@krita_layer_name'
+        root_name: 'primary'
+
+    # where to publish the individual layers
+    krita_shot_layer_publish:
+        definition: '@shot_root/publish/krita/layers/{Shot}_krita_layers.v{version}/@krita_layer_name'
+        root_name: 'primary'
+
+    # where to export layers as a folder before publishing
+    krita_shot_layers_export:
+        definition: '@shot_root/work/krita/layers/{Shot}_krita_layers.v{version}'
+        root_name: 'primary'
+
+    # where to publish layers as a folder
+    krita_shot_layers_publish:
+        definition: '@shot_root/publish/krita/layers/{Shot}_krita_layers.v{version}'
+        root_name: 'primary'
+
 
 #
 # The strings section is similar to the paths section - but rather than defining paths
@@ -723,3 +832,6 @@ strings:
 
     # define how new Mari projects should be named
     mari_asset_project_name: "{mari.project_name} - Asset {asset_name}, {task_name}"
+
+    # represents the name of a layer file in krita
+    krita_layer_name: "{krita.layer_name}.{krita.image_extension}"
