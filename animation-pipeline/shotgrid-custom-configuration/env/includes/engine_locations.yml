@@ -75,5 +75,5 @@ engines.tk-vred.location:
   version: v3.5.7
 engines.tk-krita.location:
   type: git
-  path: https://github.com/diegogarciahuerta/tk-krita
-  version: v1.0.3
+  path: https://github.com/zreynders/tk-krita
+  version: v1.0.4
