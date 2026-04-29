@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zachary Reynders - Data Scientist / ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0e0f11;
+    --surface: #161719;
+    --border: #2a2b2e;
+    --text: #e8e4dc;
+    --muted: #888580;
+    --accent: #c9a84c;
+    --accent-dim: #c9a84c22;
+    --accent2: #6a9fb5;
+    --accent2-dim: #6a9fb511;
+    --red: #c96a6a;
+    --green: #6ab58a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+
+  .page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 52px 40px 80px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 44px;
+    gap: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 76px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+
+  .name em { color: var(--accent); font-style: italic; }
+
+  .header-right { text-align: right; }
+
+  .applying-to {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .target-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .contact-item a { color: var(--muted); }
+  .contact-item a:hover { color: var(--accent); }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 52px;
+    align-items: start;
+  }
+
+  .sidebar { animation: fadeUp 0.6s 0.1s ease both; }
+  .sidebar-section { margin-bottom: 32px; }
+
+  .sidebar-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .sidebar-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .skill-group { margin-bottom: 14px; }
+
+  .skill-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .pill.hot { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+  .pill.blue { border-color: var(--accent2); color: var(--accent2); background: var(--accent2-dim); }
+  .pill.green { border-color: var(--green); color: var(--green); background: #6ab58a11; }
+
+  .sidebar-list { list-style: none; }
+
+  .sidebar-list li {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .sidebar-list li .yrs {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .edu-item { margin-bottom: 13px; }
+  .edu-deg { font-size: 12.5px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .edu-field { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); margin-top: 2px; }
+  .edu-uni { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .main { animation: fadeUp 0.6s 0.15s ease both; }
+
+  .section { margin-bottom: 44px; padding-top: 44px; page-break-inside: avoid; }
+
+  .section-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .section-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .featured-project {
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .featured-project.blue { border-color: var(--accent2); }
+  .featured-project.green { border-color: var(--green); }
+
+  .featured-project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .featured-project-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .featured-project-desc {
+    font-size: 12.5px;
+    color: #b8b4ac;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .featured-project-desc strong { color: var(--text); font-weight: 500; }
+
+  .featured-bullets { list-style: none; margin-bottom: 14px; }
+
+  .featured-bullets li {
+    font-size: 12px;
+    color: #b8b4ac;
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .featured-bullets li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+  }
+
+  .featured-bullets.blue li::before { color: var(--accent2); }
+  .featured-bullets.green li::before { color: var(--green); }
+  .featured-bullets strong { color: var(--text); font-weight: 500; }
+
+  .entry {
+    padding: 0 0 28px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    page-break-inside: avoid;
+  }
+
+  .entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .entry-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .entry-company {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .entry-company .sector {
+    color: var(--muted);
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+
+  .entry-duration {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .entry-type {
+    font-size: 10px;
+    color: var(--red);
+    margin-top: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .entry-desc {
+    font-size: 13px;
+    color: #b8b4ac;
+    line-height: 1.65;
+    margin: 10px 0 12px;
+    max-width: 520px;
+  }
+
+  .entry-desc strong { color: var(--text); font-weight: 500; }
+
+  .entry-bullets { list-style: none; margin: 8px 0 12px; max-width: 520px; }
+
+  .entry-bullets li {
+    font-size: 12px;
+    color: #b8b4ac;
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .entry-bullets li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-size: 10px;
+  }
+
+  .entry-bullets strong { color: var(--text); font-weight: 500; }
+  .entry-tech { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 680px) {
+    .body-grid { grid-template-columns: 1fr; }
+    .header { grid-template-columns: 1fr; }
+    .header-right { text-align: left; }
+    .contact-row { justify-content: flex-start; }
+  }
+
+  @page {
+    margin: 0 0 8mm 0;
+    border-style: none;
+    size: A3;
+    @top-right {
+      background-color: #2a2b2e;
+    }
+    @top-left {
+      background-color: #2a2b2e;
+    }
+    @bottom-left {
+      content: "Zachary Reynders · Data Scientist / ML Engineer";
+
+      font-family:'JetBrains Mono';
+      background-color: #2a2b2e;
+      letter-spacing:0.15em;
+      color:var(--text);
+      padding-left: 1mm;
+      font-size:9px;
+    }
+    @bottom-right {
+      content: "Sydney, AU";
+
+      font-family:'JetBrains Mono';
+      background-color: #2a2b2e;
+      letter-spacing:0.15em;
+      color:var(--text);
+      padding-right: 1mm;
+      font-size:9px;
+    }
+  }
+
+  @media print {
+    html { font-size: 11px; }
+    .page { padding: 32px; }
+    .footer { height: 0; visibility: hidden; }
+    @keyframes fadeUp { from { opacity:1; } to { opacity:1; } }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div>
+      <h1 class="name">Zachary<br><em>Reynders</em></h1>
+    </div>
+    <div class="header-right">
+      <span class="applying-to">Available for</span>
+      <span class="target-role">Data Scientist / ML Engineer</span>
+      <div class="contact-row">
+        <span class="contact-item">Sydney, AU</span>
+        <span class="contact-item"><a href="https://github.com/zreynders">github.com/zreynders</a></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="body-grid">
+
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Stack</div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">ML / DL</div>
+          <div class="skill-pills">
+            <span class="pill hot">PyTorch</span>
+            <span class="pill hot">Scikit-learn</span>
+            <span class="pill hot">MLflow</span>
+            <span class="pill">ALS / CF</span>
+            <span class="pill">XGBoost</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Data Engineering</div>
+          <div class="skill-pills">
+            <span class="pill hot">PySpark</span>
+            <span class="pill hot">Databricks</span>
+            <span class="pill green">Pandas</span>
+            <span class="pill green">NumPy</span>
+            <span class="pill">DAB</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Languages</div>
+          <div class="skill-pills">
+            <span class="pill hot">Python</span>
+            <span class="pill">SQL</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">C# / C++</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Data Stores</div>
+          <div class="skill-pills">
+            <span class="pill green">Redshift</span>
+            <span class="pill green">BigQuery</span>
+            <span class="pill green">PostgreSQL</span>
+            <span class="pill">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Cloud</div>
+          <div class="skill-pills">
+            <span class="pill green">AWS Lambda</span>
+            <span class="pill green">AWS S3</span>
+            <span class="pill green">Boto3</span>
+            <span class="pill">GCP</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Evaluation</div>
+          <div class="skill-pills">
+            <span class="pill">Precision@k</span>
+            <span class="pill">Recall@k</span>
+            <span class="pill">NDCG@k</span>
+            <span class="pill">Gain / Lift</span>
+            <span class="pill">A/B Testing</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">MLOps</div>
+          <div class="skill-pills">
+            <span class="pill">MLflow</span>
+            <span class="pill">Databricks DAB</span>
+            <span class="pill">Feature Stores</span>
+            <span class="pill">Experiment Tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Experience</div>
+        <ul class="sidebar-list">
+          <li>SafetyCulture <span class="yrs">2024-now</span></li>
+          <li>Bank of Queensland <span class="yrs">2023-24</span></li>
+          <li>Westpac <span class="yrs">2022-23</span></li>
+          <li>News Corp Australia <span class="yrs">2020-22</span></li>
+          <li>Inchcape <span class="yrs">2018-20</span></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Master of Computer Science</div>
+          <div class="edu-field">ML · Full-Stack · Cloud</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Graduate Diploma</div>
+          <div class="edu-field">Computer Science</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Advanced Diploma</div>
+          <div class="edu-field">Interactive Digital Media</div>
+          <div class="edu-uni">Game Design · Unity · 3ds Max</div>
+        </div>
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <section class="section">
+        <div class="section-heading">Profile</div>
+        <p style="font-size:13.5px; color:#b8b4ac; line-height:1.75; max-width:530px;">
+          Data scientist and ML engineer with <strong style="color:var(--text)">9+ years</strong> of professional experience, including end-to-end production ML systems built on Databricks and AWS. My focus is on the full model lifecycle: problem framing, feature engineering, training, rigorous evaluation, and production deployment. I have strong foundations in classical ML and collaborative filtering, and I care deeply about evaluation rigour: getting the metrics right, avoiding data leakage, and measuring what actually matters in production. Comfortable owning the data engineering layer as well as the modelling layer.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">ML Projects</div>
+
+        <!-- CLR Recommendation System -->
+        <div class="featured-project">
+          <div class="featured-project-title">Content Library Recommendation System</div>
+          <div class="featured-project-sub">SafetyCulture · ALS Collaborative Filtering · PySpark · MLflow · Databricks · Python</div>
+          <div class="featured-project-desc">
+            End-to-end <strong>production recommendation system</strong> for surfacing relevant templates to SafetyCulture users. Built on <strong>ALS collaborative filtering</strong> in PySpark, with a full evaluation harness, MLflow experiment tracking, and deployment via Databricks Asset Bundles onto serverless compute.
+          </div>
+          <ul class="featured-bullets">
+            <li>Designed the <strong>full data pipeline</strong>: raw interaction events ingested, deduplicated, and transformed into a user-item interaction matrix suitable for ALS training</li>
+            <li>Diagnosed and fixed a <strong>data leakage bug</strong> in the train/test split causing inflated offline metrics; rebuilt the temporal holdout to correctly reflect the production setting</li>
+            <li>Identified and corrected an <strong>evaluation bug</strong> where the wrong column was being selected as <code>y_pred</code>, invalidating precision@k and NDCG@k results across all prior runs</li>
+            <li>Resolved <strong>cold-start NaN errors</strong> for users with no interaction history, implementing a popularity-based fallback strategy to handle the sparse case gracefully</li>
+            <li>Fixed a <strong>misconfigured StandardScaler</strong> that was outputting dense vector columns rather than scalars, causing downstream feature assembly failures</li>
+            <li>Tracked all experiments in <strong>MLflow</strong>: hyperparameter sweeps over ALS rank, regularization, and iterations; logged precision@k, recall@k, NDCG@k, gain, and lift per run</li>
+            <li>Packaged the project as a <strong>Databricks Asset Bundle</strong>: wheel installation on serverless compute, environment variable injection, and multi-environment promotion config</li>
+          </ul>
+          <div class="skill-pills">
+            <span class="pill hot">PySpark</span><span class="pill hot">Python</span><span class="pill">ALS / CF</span><span class="pill">MLflow</span><span class="pill">Databricks</span><span class="pill">DAB</span><span class="pill">Precision@k</span><span class="pill">NDCG@k</span>
+          </div>
+        </div>
+
+        <!-- Genetic algorithm -->
+        <div class="featured-project blue">
+          <div class="featured-project-title">Genetic Algorithm Image Processing Pipeline</div>
+          <div class="featured-project-sub">Personal Project · Python · NumPy · Typed Node/Action Architecture</div>
+          <div class="featured-project-desc">
+            A <strong>genetic algorithm</strong> that evolves image processing pipelines represented as typed computation graphs. The core is a <code>Node</code> / <code>Action</code> architecture with an iterative <code>forward()</code> pass evaluating a graph in topological order, analogous to a lightweight autograd engine. Nodes mutate, graphs crossover, and fitness is evaluated per generation against a target image signal.
+          </div>
+          <ul class="featured-bullets blue">
+            <li>Designed the <strong>typed Node and Action system</strong> from scratch using Python generics and <code>dataclasses</code>: clean separation between graph structure, operator definitions, and execution</li>
+            <li>Implemented <strong>topological forward evaluation</strong> with cycle detection and partial evaluation support, making the runtime stable under arbitrary graph mutations</li>
+            <li>Built the <strong>genetic operators</strong>: node-level mutation (operator swap, parameter perturbation), subtree crossover, and fitness-proportionate selection with elitism</li>
+          </ul>
+          <div class="skill-pills">
+            <span class="pill hot">Python</span><span class="pill">NumPy</span><span class="pill">Genetic Algorithms</span><span class="pill">Graph Algorithms</span><span class="pill">Type System Design</span>
+          </div>
+        </div>
+
+        <!-- Polymarket -->
+        <div class="featured-project green" style="margin-bottom:0">
+          <div class="featured-project-title">Polymarket Suspicious Trading Detector</div>
+          <div class="featured-project-sub">Personal Project · Python · Pandas · NumPy · yfinance · REST APIs</div>
+          <div class="featured-project-desc">
+            A signal detection pipeline that correlates <strong>anomalous Polymarket prediction market activity</strong> with underlying equity price movements via yfinance. Designed to surface statistically suspicious timing patterns between position changes and subsequent price action.
+          </div>
+          <ul class="featured-bullets green">
+            <li>Built a <strong>sliding window correlation engine</strong> in NumPy/Pandas to identify lead-lag relationships between market events and equity moves across heterogeneous time series</li>
+            <li>Handled <strong>timezone alignment and irregular sampling</strong> across two data sources with different resolution and latency characteristics</li>
+            <li>Ranked suspects by <strong>signal strength</strong> with configurable detection thresholds, producing a filterable output suitable for further investigation</li>
+          </ul>
+          <div class="skill-pills">
+            <span class="pill hot">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">yfinance</span><span class="pill blue">REST APIs</span><span class="pill">Signal Detection</span>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <section class="section">
+    <div class="section-heading">Work Experience</div>
+
+    <!-- SafetyCulture -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Data Scientist</div>
+        <div class="entry-company">SafetyCulture <span class="sector">· B2B SaaS</span></div>
+        <ul class="entry-bullets">
+          <li>Owned the <strong>Content Library Recommendation (CLR)</strong> project end-to-end: ALS collaborative filtering in PySpark, MLflow experiment tracking, evaluation harness (precision@k, recall@k, NDCG@k, gain, lift), and production deployment on Databricks serverless compute</li>
+          <li>Built a <strong>52-week time-series benchmarking pipeline</strong> to identify orgs eligible for a site benchmarking experiment: complex multi-table joins, Fisher-Pearson skewness scoring, and single-pass DAG design across hundreds of orgs</li>
+          <li>Diagnosed and resolved <strong>data leakage</strong> in the recommendation system's train/test split and an evaluation bug where the wrong column was selected as <code>y_pred</code>, both of which had silently invalidated offline metrics</li>
+          <li>Shipped <strong>AWS Lambda / S3 / Boto3</strong> integrations for event-driven data workflows; managed IAM, deployment packaging, and environment config</li>
+          <li>Set up the local <strong>Poetry / Python 3.12 development environment</strong> for the CLR package against Databricks Runtime 18.0, resolving version conflicts between <code>databricks-connect</code> and <code>databricks-sdk</code></li>
+          <li>Conducted a <strong>B2B LTV and discount analysis</strong> in PySpark, uncovering structured pricing tiers, enterprise discount leakage, and a notable cohort anomaly; results documented in Confluence for cross-functional stakeholders</li>
+        </ul>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill hot">PySpark</span><span class="pill hot">PyTorch</span><span class="pill hot">MLflow</span><span class="pill">Databricks</span><span class="pill">ALS / CF</span><span class="pill green">AWS Lambda</span><span class="pill green">S3 / Boto3</span><span class="pill green">Redshift</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2024 - Present</div>
+        <div class="entry-duration" style="margin-top:4px">~2 yrs</div>
+      </div>
+    </div>
+
+    <!-- Inchcape -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Automation Lead / Developer</div>
+        <div class="entry-company">Inchcape Australia <span class="sector">· Automotive</span></div>
+        <ul class="entry-bullets">
+          <li>Applied <strong>PyTorch and Scikit-learn</strong> to document classification and processing workflows; productionised models as batch-processing Python pipelines integrated with business software</li>
+          <li>Built end-to-end automation tooling including custom web interfaces consumed by non-technical users, demonstrating the ability to deploy ML outputs into operational contexts</li>
+        </ul>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill hot">PyTorch</span><span class="pill hot">Scikit-learn</span><span class="pill">SQL</span><span class="pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2018 - 2020</div>
+        <div class="entry-duration" style="margin-top:4px">3 yrs total</div>
+      </div>
+    </div>
+
+    <!-- News Corp -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Senior Data Analyst</div>
+        <div class="entry-company">News Corp Australia <span class="sector">· Media</span></div>
+        <div class="entry-desc">
+          Owned audience data pipelines at scale on <strong>GCP / BigQuery</strong>. Produced behavioural analysis and segmentation work that fed directly into editorial and product decisions across a large multi-team organisation.
+        </div>
+        <div class="entry-tech">
+          <span class="pill">SQL</span><span class="pill">Python</span><span class="pill green">BigQuery</span><span class="pill">GCP</span><span class="pill">Tableau</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2020 - 2022</div>
+        <div class="entry-duration" style="margin-top:4px">2.5 yrs</div>
+      </div>
+    </div>
+
+    <!-- Westpac -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Senior Data Analyst</div>
+        <div class="entry-company">Westpac <span class="sector">· Banking</span></div>
+        <div class="entry-desc">
+          Python and SQL across Teradata-backed data warehouses. Delivered analyst tooling and reporting automation used across the organisation.
+        </div>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill">SQL</span><span class="pill">Teradata</span><span class="pill">PowerBI</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2022 - 2023</div>
+        <div class="entry-duration" style="margin-top:4px">1 yr</div>
+        <div class="entry-type">Contract</div>
+      </div>
+    </div>
+
+    <!-- BOQ -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Senior Automation Manager</div>
+        <div class="entry-company">Bank of Queensland <span class="sector">· Banking</span></div>
+        <div class="entry-desc">
+          Delivered Python-based automation tooling and Power Platform integrations that eliminated manual processing overhead across banking operations.
+        </div>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">PowerAutomate</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2023 - 2024</div>
+        <div class="entry-duration" style="margin-top:4px">1 yr</div>
+        <div class="entry-type">Contract</div>
+      </div>
+    </div>
+
+  </section>
+  <div class="footer" style="border-top:1px solid var(--border); margin-top:52px; padding-top:18px; display:flex; justify-content:space-between; align-items:center;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.15em; color:var(--muted); text-transform:uppercase;">Zachary Reynders · Data Scientist / ML Engineer</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted);">Sydney, AU</span>
+  </div>
+</div>
+</body>
+</html>

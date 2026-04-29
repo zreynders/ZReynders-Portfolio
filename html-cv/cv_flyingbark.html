@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zachary Reynders - Pipeline Technical Director</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0e0f11;
+    --surface: #161719;
+    --border: #2a2b2e;
+    --text: #e8e4dc;
+    --muted: #888580;
+    --accent: #c9a84c;
+    --accent-dim: #c9a84c22;
+    --accent2: #6a9fb5;
+    --accent2-dim: #6a9fb511;
+    --red: #c96a6a;
+    --green: #6ab58a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+
+  .page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 52px 40px 80px;
+  }
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 44px;
+    gap: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 76px);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+
+  .name em { color: var(--accent); font-style: italic; }
+
+  .header-right { text-align: right; }
+
+  .applying-to {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .target-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+  }
+
+  .target-company {
+    font-size: 13px;
+    color: var(--accent);
+    display: block;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+
+  .target-loc {
+    font-size: 11px;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 52px;
+    align-items: start;
+  }
+
+  .sidebar { animation: fadeUp 0.6s 0.1s ease both; }
+
+  .sidebar-section { margin-bottom: 32px; }
+
+  .sidebar-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .sidebar-heading::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .skill-group { margin-bottom: 14px; }
+
+  .skill-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 4px; }
+
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .pill.hot {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .pill.blue {
+    border-color: var(--accent2);
+    color: var(--accent2);
+    background: var(--accent2-dim);
+  }
+
+  .pill.green {
+    border-color: var(--green);
+    color: var(--green);
+    background: #6ab58a11;
+  }
+
+  .match-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 1px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    background: #6ab58a0d;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+
+  .sidebar-list { list-style: none; }
+
+  .sidebar-list li {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .sidebar-list li span { color: var(--text); font-weight: 500; font-size: 11px; }
+
+  .edu-item { margin-bottom: 13px; }
+  .edu-deg { font-size: 12.5px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .edu-field { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); margin-top: 2px; }
+  .edu-uni { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .main { animation: fadeUp 0.6s 0.15s ease both; }
+
+  .section {
+    margin-bottom: 44px;
+    page-break-inside: avoid;
+  }
+
+  .section-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .section-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .featured-project {
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 22px 24px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  .featured-project::before {
+    content: 'PIPELINE PORTFOLIO';
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    opacity: 0.5;
+  }
+
+  .featured-project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .featured-project-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .featured-project-desc {
+    font-size: 12.5px;
+    color: #b8b4ac;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .featured-project-desc strong { color: var(--text); font-weight: 500; }
+
+  .featured-bullets {
+    list-style: none;
+    margin-bottom: 14px;
+  }
+
+  .featured-bullets li {
+    font-size: 12px;
+    color: #b8b4ac;
+    padding: 4px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .featured-bullets li::before {
+    content: 'to';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    content: '\2192';
+  }
+
+  .featured-bullets strong { color: var(--text); font-weight: 500; }
+
+  .entry {
+    padding: 0 0 28px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    page-break-inside: avoid;
+  }
+
+  .entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .entry-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .entry-company {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .entry-company .sector {
+    color: var(--muted);
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+
+  .entry-duration {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .entry-type {
+    font-size: 10px;
+    color: var(--red);
+    margin-top: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .entry-desc {
+    font-size: 13px;
+    color: #b8b4ac;
+    line-height: 1.65;
+    margin: 10px 0 12px;
+    max-width: 520px;
+  }
+
+  .entry-desc strong { color: var(--text); font-weight: 500; }
+
+  .entry-bullets { list-style: none; margin: 8px 0 12px; max-width: 520px; }
+
+  .entry-bullets li {
+    font-size: 12px;
+    color: #b8b4ac;
+    padding: 3px 0;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .entry-bullets li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+    font-size: 10px;
+  }
+
+  .entry-bullets strong { color: var(--text); font-weight: 500; }
+
+  .entry-tech { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 680px) {
+    .body-grid { grid-template-columns: 1fr; }
+    .header { grid-template-columns: 1fr; }
+    .header-right { text-align: left; }
+  }
+
+  @media print {
+    html { font-size: 11px; }
+    .page { padding: 32px; }
+    @keyframes fadeUp { from { opacity:1; } to { opacity:1; } }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div>
+      <h1 class="name">Zachary<br><em>Reynders</em></h1>
+    </div>
+    <div class="header-right">
+      <span class="applying-to">Applying for</span>
+      <span class="target-role">Pipeline Technical Director</span>
+      <span class="target-company">Flying Bark Productions</span>
+      <span class="target-loc">Sydney, NSW · Hybrid</span>
+    </div>
+  </header>
+
+  <div class="body-grid">
+
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Pipeline Stack</div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Production Software</div>
+          <div class="skill-pills">
+            <span class="pill green">Shotgrid</span>
+            <span class="pill green">Shotgrid Toolkit</span>
+            <span class="pill blue">Maya</span>
+            <span class="pill blue">Houdini (docs)</span>
+            <span class="pill blue">Blender</span>
+            <span class="pill blue">Krita</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Cloud &amp; Asset Management</div>
+          <div class="skill-pills">
+            <span class="pill green">AWS S3</span>
+            <span class="pill green">AWS Lambda</span>
+            <span class="pill green">Boto3 API</span>
+            <span class="pill">GCP</span>
+            <span class="pill">Postgres</span>
+            <span class="pill">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Core Languages</div>
+          <div class="skill-pills">
+            <span class="pill hot">Python</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">C# / C++</span>
+            <span class="pill">GLSL</span>
+            <span class="pill">SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">ML / Data</div>
+          <div class="skill-pills">
+            <span class="pill">PyTorch</span>
+            <span class="pill">TensorFlow</span>
+            <span class="pill">Scikit-learn</span>
+            <span class="pill">PySpark</span>
+            <span class="pill">Databricks</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">REST &amp; APIs</div>
+          <div class="skill-pills">
+            <span class="pill">FastAPI</span>
+            <span class="pill">YouTube Data API</span>
+            <span class="pill">Spotify API</span>
+            <span class="pill">Google APIs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">JD Coverage</div>
+        <ul class="sidebar-list">
+          <li>Shotgrid + Toolkit <span class="match-tag">&#10003; Hands-on</span></li>
+          <li>Python / APIs <span class="match-tag">&#10003; Hands-on</span></li>
+          <li>AWS S3 / Lambda / Boto <span class="match-tag">&#10003; Hands-on</span></li>
+          <li>Postgres / Relational DB <span class="match-tag">&#10003; Hands-on</span></li>
+          <li>Maya / Houdini APIs <span class="match-tag">~ Docs level</span></li>
+          <li>Katana / Nuke / Tractor <span class="match-tag">~ Docs level</span></li>
+          <li>Cross-team tooling <span class="match-tag">&#10003; Hands-on</span></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Master of Computer Science</div>
+          <div class="edu-field">ML · Full-Stack · Cloud</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Graduate Diploma</div>
+          <div class="edu-field">Computer Science</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Advanced Diploma</div>
+          <div class="edu-field">Interactive Digital Media</div>
+          <div class="edu-uni">Unity · 3ds Max · Game Design</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">3D / Game Dev</div>
+        <div class="skill-pills">
+          <span class="pill blue">Blender</span>
+          <span class="pill blue">Maya</span>
+          <span class="pill blue">Houdini</span>
+          <span class="pill blue">3ds Max</span>
+          <span class="pill blue">Krita</span>
+          <span class="pill">Godot C#</span>
+          <span class="pill">Unreal C++</span>
+          <span class="pill">Unity C#</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <section class="section">
+        <div class="section-heading">Profile</div>
+        <p style="font-size:13.5px; color:#b8b4ac; line-height:1.75; max-width:530px;">
+          Python engineer with <strong style="color:var(--text)">9+ years</strong> of professional experience building tools, pipelines, and API integrations across a range of production environments. The core competency this role needs is <strong style="color:var(--text)">Python fluency plus the ability to learn new APIs fast</strong>, and that's genuinely where I'm strongest. I built a working Shotgrid pipeline from scratch in a day, having not used the Toolkit before. The DCC APIs (Maya, Houdini, Katana, Nuke, Tractor) are familiar at a documentation and conceptual level. I haven't shipped production code against them yet, but they follow the same patterns I work with daily, and combined with hands-on 3D software experience in Blender and Maya, and production AWS infrastructure work, the ramp to mid-level TD is a short one.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">Pipeline Work</div>
+
+        <div class="featured-project">
+          <div class="featured-project-title">Shotgrid Pipeline Configuration</div>
+          <div style="display:flex; gap:8px; margin-top:5px; margin-bottom:10px;">
+            <a href="https://github.com/zreynders/ZReynders-Portfolio/tree/main/animation-pipeline/shotgrid-custom-configuration" style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.08em; padding:2px 8px; border-radius:3px; border:1px solid var(--accent2); color:var(--accent2); background:var(--accent2-dim); text-decoration:none;">&#8599; config repo</a>
+            <a href="https://github.com/diegogarciahuerta/tk-krita/pull/5" style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.08em; padding:2px 8px; border-radius:3px; border:1px solid var(--accent2); color:var(--accent2); background:var(--accent2-dim); text-decoration:none;">&#8599; tk-krita PR</a>
+          </div>
+          <div class="featured-project-sub">Personal Project · Shotgrid · Maya · Krita · Python · built in a day</div>
+          <div class="featured-project-desc">
+            Built a working <strong>Shotgrid (Flow Production Tracking) pipeline</strong> from scratch in a single day, the first time using the Toolkit. Used a distributed configuration setup, integrating multiple DCC applications and managing engine registrations, environment configs, and multi-app toolkit settings across the board.
+          </div>
+          <ul class="featured-bullets">
+            <li>Configured <strong>tk-krita</strong> from scratch: authored <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent2)">template.yml</code>, engine location files, settings YAMLs, and environment configs to correctly surface Krita across the pipeline</li>
+            <li>Diagnosed a <strong>Python 2 to 3 compatibility bug</strong> in the upstream <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent2)">tk-krita</code> library, forked the repo, patched it, and confirmed the app launched successfully from Shotgun</li>
+            <li>After going through the process once, identified it could be <strong>fully automated via a config scaffolding script</strong>, the kind of systematic improvement instinct the role calls for</li>
+            <li>Read and applied the <strong>Houdini and Maya Toolkit docs</strong> to understand the integration model; DCC Python APIs are next on the list to build against hands-on</li>
+          </ul>
+          <div class="skill-pills">
+            <span class="pill green">Shotgrid</span><span class="pill green">Shotgrid Toolkit</span><span class="pill blue">Maya</span><span class="pill blue">Houdini (docs)</span><span class="pill hot">Python</span><span class="pill">YAML Config</span><span class="pill">Open Source Contribution</span>
+          </div>
+        </div>
+
+        <div class="featured-project" style="border-color: var(--accent2); margin-bottom:0;">
+          <div class="featured-project-title">Transvoxel Implementation</div>
+          <div class="featured-project-sub">Personal Project · C++ · GLSL · Godot C#</div>
+          <div class="featured-project-desc">
+            A <strong>C++ and GLSL engine</strong> that generates 3D meshes from depth graphs using the Transvoxel algorithm for seamless LOD voxel terrain. A <strong>Godot C# layer</strong> consumes the output to instantiate meshes and colliders within the engine. Low-level graphics and systems programming with no art or tooling component.
+          </div>
+          <div class="skill-pills">
+            <span class="pill">C++</span><span class="pill">GLSL</span><span class="pill blue">Godot C#</span>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <section class="section">
+    <div class="section-heading">Work Experience</div>
+
+    <!-- SafetyCulture -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Data Scientist</div>
+        <div class="entry-company">SafetyCulture <span class="sector">· B2B SaaS</span></div>
+        <ul class="entry-bullets">
+          <li>Built and maintained <strong>production Python pipelines</strong> in Databricks, directly analogous to DCC pipeline tooling in terms of DAG design, dependency management, and scalability requirements</li>
+          <li>Shipped <strong>AWS Lambda / S3 / Boto3</strong> integrations for automated data workflows, matching the cloud stack called out in the JD</li>
+          <li>Worked across engineering, product, and cross-functional teams to gather requirements and deliver tooling, mirroring the cross-department pipeline TD communication model</li>
+          <li>Diagnosed and resolved complex pipeline bugs (null propagation, near-Cartesian joins), experience directly applicable to troubleshooting DCC and render farm issues</li>
+        </ul>
+        <div class="entry-tech">
+          <span class="pill green">AWS Lambda</span><span class="pill green">S3 / Boto3</span><span class="pill hot">Python</span><span class="pill hot">PySpark</span><span class="pill">Databricks</span><span class="pill">Redshift</span><span class="pill">Postgres</span><span class="pill">PyTorch</span><span class="pill">MLflow</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2024 - Present</div>
+        <div class="entry-duration" style="margin-top:4px">2 yrs</div>
+      </div>
+    </div>
+
+    <!-- Artay -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Lead Software Engineer</div>
+        <div class="entry-company">Artay <span class="sector">· Creative Platform Startup</span></div>
+        <ul class="entry-bullets">
+          <li>Architected the full backend for a creative-focused social platform using <strong>REST APIs</strong> (YouTube, Spotify, Google Geolocation), FastAPI, and MongoDB</li>
+          <li>Led technical decisions across iOS (Swift), backend (Python), and ML (Scikit-learn) layers simultaneously</li>
+          <li>Directly analogous to pipeline TD responsibilities: owning tools that connect creative workflows to data systems</li>
+        </ul>
+        <div class="entry-tech">
+          <span class="pill hot">FastAPI</span><span class="pill">MongoDB</span><span class="pill">Swift</span><span class="pill">REST APIs</span><span class="pill">Scikit-learn</span><span class="pill hot">Python</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">Concurrent</div>
+      </div>
+    </div>
+
+    <!-- BOQ -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Senior Automation Manager</div>
+        <div class="entry-company">Bank of Queensland <span class="sector">· Banking</span></div>
+        <div class="entry-desc">
+          Delivered <strong>Power Platform automation</strong> (PowerApps, Power Automate) and Python tooling that reduced manual processing overhead across banking operations. Built JavaScript utilities to bridge legacy systems with modern workflow automation, maintaining SQL data layers throughout.
+        </div>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">PowerAutomate</span><span class="pill">PowerApps</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2023 - 2024</div>
+        <div class="entry-duration" style="margin-top:4px">1 yr</div>
+        <div class="entry-type">Contract</div>
+      </div>
+    </div>
+
+    <!-- Westpac -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Senior Data Analyst</div>
+        <div class="entry-company">Westpac <span class="sector">· Banking</span></div>
+        <div class="entry-desc">
+        </div>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill">SQL</span><span class="pill">JavaScript</span><span class="pill">Teradata</span><span class="pill">PowerBI</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2022 - 2023</div>
+        <div class="entry-duration" style="margin-top:4px">1 yr</div>
+        <div class="entry-type">Contract</div>
+      </div>
+    </div>
+
+    <!-- News Corp -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Senior Data Analyst</div>
+        <div class="entry-company">News Corp Australia <span class="sector">· Media</span></div>
+        <div class="entry-desc">
+          Owned audience data pipelines at scale on <strong>GCP / BigQuery</strong>. Built Google Apps Script automation connecting publisher workflows, providing cross-departmental tooling across a large production organisation.
+        </div>
+        <div class="entry-tech">
+          <span class="pill">SQL</span><span class="pill">Python</span><span class="pill">BigQuery</span><span class="pill">GCP</span><span class="pill">Tableau</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2020 - 2022</div>
+        <div class="entry-duration" style="margin-top:4px">2.5 yrs</div>
+      </div>
+    </div>
+
+    <!-- Inchcape -->
+    <div class="entry">
+      <div class="entry-left">
+        <div class="entry-role">Automation Lead / Developer</div>
+        <div class="entry-company">Inchcape Australia <span class="sector">· Automotive</span></div>
+        <ul class="entry-bullets">
+          <li>Built <strong>Python-based tooling</strong> integrated directly with business software applications, following the same pattern as DCC plugin development, including custom web interfaces consumed by non-technical users</li>
+          <li>Developed and maintained automation pipelines end-to-end: from requirements gathering through to deployment and ongoing support across multiple teams</li>
+          <li>Applied ML (PyTorch, Scikit-learn) to classification and document processing, demonstrating comfortable Python depth across scripting, tooling, and applied ML</li>
+        </ul>
+        <div class="entry-tech">
+          <span class="pill hot">Python</span><span class="pill">PyTorch</span><span class="pill">Scikit-learn</span><span class="pill">SQL</span><span class="pill">JavaScript</span><span class="pill">HTML5</span><span class="pill">VBA</span>
+        </div>
+      </div>
+      <div class="entry-right">
+        <div class="entry-duration">2018 - 2020</div>
+        <div class="entry-duration" style="margin-top:4px">3 yrs total</div>
+      </div>
+    </div>
+
+  </section>
+
+  <div style="border-top:1px solid var(--border); margin-top:52px; padding-top:18px; display:flex; justify-content:space-between; align-items:center;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.15em; color:var(--muted); text-transform:uppercase;">Zachary Reynders · Pipeline Technical Director</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted);">Sydney, AU</span>
+  </div>
+
+</div>
+</body>
+</html>
