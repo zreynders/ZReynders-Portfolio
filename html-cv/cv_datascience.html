@@ -400,6 +400,7 @@
     html { font-size: 11px; }
     .page { padding: 32px; }
     .footer { height: 0; visibility: hidden; }
+    .featured-bullets { height: 0; visibility: hidden; }
     @keyframes fadeUp { from { opacity:1; } to { opacity:1; } }
   }
 </style>
@@ -617,7 +618,6 @@
         <ul class="entry-bullets">
           <li>Owned the <strong>Content Library Recommendation (CLR)</strong> project end-to-end: ALS collaborative filtering in PySpark, MLflow experiment tracking, evaluation harness (precision@k, recall@k, NDCG@k, gain, lift), and production deployment on Databricks serverless compute</li>
           <li>Built a <strong>52-week time-series benchmarking pipeline</strong> to identify orgs eligible for a site benchmarking experiment: complex multi-table joins, Fisher-Pearson skewness scoring, and single-pass DAG design across hundreds of orgs</li>
-          <li>Diagnosed and resolved <strong>data leakage</strong> in the recommendation system's train/test split and an evaluation bug where the wrong column was selected as <code>y_pred</code>, both of which had silently invalidated offline metrics</li>
           <li>Shipped <strong>AWS Lambda / S3 / Boto3</strong> integrations for event-driven data workflows; managed IAM, deployment packaging, and environment config</li>
           <li>Set up the local <strong>Poetry / Python 3.12 development environment</strong> for the CLR package against Databricks Runtime 18.0, resolving version conflicts between <code>databricks-connect</code> and <code>databricks-sdk</code></li>
           <li>Conducted a <strong>B2B LTV and discount analysis</strong> in PySpark, uncovering structured pricing tiers, enterprise discount leakage, and a notable cohort anomaly; results documented in Confluence for cross-functional stakeholders</li>
